@@ -1,5 +1,6 @@
 .env
 .coverage
+coverage.xml
 *.pid
 .pytest_cache/
 __pycache__/
