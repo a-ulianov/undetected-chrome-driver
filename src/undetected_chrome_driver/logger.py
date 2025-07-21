@@ -1,6 +1,7 @@
-"""Настройки и инициализация логера"""
+"""Logger configuration and initialization."""
 
 import logging
+# import os
 
 LOGGER_NAME = 'Webdriver'
 # LOGS_DIR = 'logs'
@@ -10,18 +11,18 @@ LOGGING_LEVEL = logging.DEBUG
 logger: logging.Logger = logging.getLogger(name=LOGGER_NAME)
 logger.setLevel(LOGGING_LEVEL)
 
-# Создаем консольный обработчик и устанавливаем для него уровень логирования
+# Create console handler and set its logging level
 console_handler = logging.StreamHandler()
 console_handler.setLevel(LOGGING_LEVEL)
 
-# Создаем форматер и добавляем его в обработчик
+# Create formatter and add it to the handler
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
 
-# Добавляем обработчик логеру
+# Add handler to the logger
 logger.addHandler(console_handler)
 
-# Файловое логирование
+# File logging (commented out)
 # file_handler = logging.FileHandler(os.path.join(LOGS_DIR, f'{LOG_FILE}'))
 # file_handler.setLevel(logging.INFO)
 # file_handler.setFormatter(formatter)
