@@ -28,14 +28,14 @@ An enhanced Chrome WebDriver with anti-detection capabilities for web scraping a
 ### Install via pip
 
 ```bash
-pip install git+https://github.com/a-ulianov/undetected-chrome-driver
+pip install git+https://github.com/a-ulianov/undetected-chrome-driver.git
 ```
 
 ### Manual installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/a-ulianov/undetected-chrome-driver
+   git clone https://github.com/a-ulianov/undetected-chrome-driver.git
    cd undetected-chrome-driver
    ```
 
