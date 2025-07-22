@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 import selenium_stealth
 from webdriver_manager.chrome import ChromeDriverManager
 
-from .logger import logger
+from .logger import Logger
 
 
 class UndetectedChromeDriver:
@@ -48,6 +48,7 @@ class UndetectedChromeDriver:
             user_agent: Optional[str] = None,
             chrome_driver_options: Optional[list[str]] = None,
             enable_performance_logging: bool = False,
+            **kwargs,
     ) -> None:
         """
         Initializes the undetected Chrome driver with stealth configuration.
@@ -112,6 +113,22 @@ class UndetectedChromeDriver:
             fix_hairline=True
         )
 
+        self.logger = Logger(**kwargs).logger
+
+    @classmethod
+    def from_obj(cls, obj: Any) -> 'UndetectedChromeDriver':
+
+        attrs: dict[str, Any] = {}
+
+        for attr_name in dir(obj):
+            # Exclude methods and private attributes
+            if attr_name.startswith('__') or callable(getattr(obj, attr_name)):
+                continue
+
+            attrs[attr_name] = getattr(obj, attr_name)
+
+        return cls(**attrs)
+
     def get_sent_requests(self) -> list[dict]:
         """
         Retrieves network request logs from performance logs.
@@ -120,14 +137,14 @@ class UndetectedChromeDriver:
             List of dictionaries containing network request data
         """
         if not self._is_performance_logging_enabled:
-            logger.warning('Performance logging is disabled')
+            self.logger.warning('Performance logging is disabled')
             return []
 
         try:
             # Retrieve performance logs
             logs: list[dict] = self.driver.get_log('performance')
         except Exception as e:
-            logger.error(f'Error retrieving performance logs: {str(e)}')
+            self.logger.error(f'Error retrieving performance logs: {str(e)}')
             return []
 
         # Filter for network request events

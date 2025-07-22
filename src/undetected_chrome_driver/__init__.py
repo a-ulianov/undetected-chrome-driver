@@ -17,12 +17,13 @@ Example usage:
 """
 
 from .driver import UndetectedChromeDriver
-from .logger import logger
+from .logger import Logger
+from .config import Config
 
 __author__ = "https://github.com/a-ulianov"
 __version__ = "1.0.0"
 __license__ = "MIT"
 
 __all__ = [
-    'UndetectedChromeDriver', 'logger'
+    'UndetectedChromeDriver', 'Logger', 'Config',
 ]

@@ -11,14 +11,16 @@ An enhanced Chrome WebDriver with anti-detection capabilities for web scraping a
 
 ## Features
 
-- 🕵️‍♂️ **Anti-detection** techniques to bypass common bot detection systems
+- 🛡️ **Anti-detection** techniques to bypass common bot detection systems
 - 🌐 **Network monitoring** with performance logging capabilities
 - 🍪 **Cookie management** with multiple output formats
 - 💾 **LocalStorage access** for comprehensive data collection
-- 🚀 **Headless mode** support with optimized default configurations
-- 🔍 **Stealth configurations** via selenium-stealth integration
-- ✅ **Fully tested** with comprehensive unit tests
+- 🖥️ **Headless mode** support with optimized default configurations
+- 🕵️ **Stealth configurations** via selenium-stealth integration
+- ✅ **Fully tested** with comprehensive unit tests (including logger tests)
 - 📊 **Code coverage** tracking (100% coverage)
+- ⚙️ **Config class** for centralized configuration management
+- 🔄 **Object initialization** via `from_obj` method
 
 ## Installation
 
@@ -61,30 +63,35 @@ with UndetectedChromeDriver() as driver:
 ### Advanced Usage
 
 ```python
-from src.undetected_chrome_driver import UndetectedChromeDriver
+from src.undetected_chrome_driver import UndetectedChromeDriver, Config
 
-# Custom configuration
-driver = UndetectedChromeDriver(
-    user_agent="Custom User Agent",
-    chrome_driver_options=["--headless=new", "--window-size=1920,1080"],
-    enable_performance_logging=True
-)
+# Using Config class
+config = Config()
+driver = UndetectedChromeDriver.from_obj(config)
 
 with driver:
-    # Navigate to a website
     driver.get('https://example.com')
     
-    # Get all cookies as dictionary
+    # Access all features
     cookies = driver.get_cookies(as_dict=True)
-    
-    # Get network requests
     requests = driver.get_sent_requests()
-    
-    # Access local storage
     local_storage = driver.get_local_storage()
-    
-    # Get formatted cookie header
     cookie_header = driver.get_cookie_header()
+```
+
+### Logger Configuration
+
+```python
+from src.undetected_chrome_driver import Logger
+
+# Custom logger setup
+logger = Logger(
+    logger_name="custom_logger",
+    logging_level=logging.DEBUG,
+    log_to_file=True,
+    logs_dir="custom_logs",
+    log_file="custom.log"
+)
 ```
 
 ## API Documentation
@@ -101,20 +108,26 @@ with driver:
 
 #### Methods
 
+- `from_obj(obj: Any) -> UndetectedChromeDriver`: Creates instance from object attributes
 - `get_sent_requests() -> List[dict]`: Returns network request logs
 - `get_cookies(as_dict=False) -> Union[List[dict], dict]`: Returns cookies in specified format
 - `get_cookie_header() -> str`: Returns cookies formatted for HTTP headers
 - `get_local_storage() -> dict`: Returns browser's local storage contents
 
-#### Context Manager
+### `Config` Class
 
-The driver supports context manager protocol for automatic cleanup:
+Centralized configuration for driver settings including:
+- User agent
+- Chrome options
+- Performance logging
+- Logger configuration
 
-```python
-with UndetectedChromeDriver() as driver:
-    # Your code here
-# Driver automatically quits here
-```
+### `Logger` Class
+
+Customizable logger with:
+- Console and file output
+- Configurable logging levels
+- Timestamp and format customization
 
 ## Development
 
@@ -126,10 +139,12 @@ your_project/
 │   ├── undetected_chrome_driver/
 │   │   ├── __init__.py
 │   │   ├── driver.py
-│   │   └── logger.py
+│   │   ├── logger.py
+│   │   └── config.py
 ├── tests/
 │   ├── conftest.py
-│   └── test_driver.py
+│   ├── test_driver.py
+│   └── test_logger.py
 ├── pyproject.toml
 └── main.py
 ```
@@ -146,13 +161,6 @@ Or use the provided main script:
 python main.py
 ```
 
-### CI/CD Pipeline
-
-The project includes a GitHub Actions workflow (`.github/workflows/tests.yml`) that:
-- Runs on push and pull requests
-- Tests on Ubuntu with Python 3.11
-- Generates coverage reports
-
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -165,7 +173,7 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 

@@ -9,4 +9,5 @@ coverage.xml
 **/.sonar/
 **/.pytest_cache/
 **/__pycache__/
+**/logs/
 

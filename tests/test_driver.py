@@ -152,10 +152,35 @@ def test_stealth_configuration(mock_driver):
                 fix_hairline=True
             )
 
-
 def test_capabilities_configuration(mock_driver):
     """Test performance logging capabilities setup."""
     driver = UndetectedChromeDriver(enable_performance_logging=True)
     with driver:
         assert 'goog:loggingPrefs' in driver.capabilities
         assert driver.capabilities['goog:loggingPrefs'] == {'performance': 'ALL'}
+
+
+def test_from_obj_method(mock_driver):
+    """Test the from_obj class method for creating driver instances from objects."""
+
+    # Create a mock object with attributes and methods
+    class MockConfig:
+        def __init__(self):
+            self.user_agent = "Custom User Agent"
+            self.chrome_driver_options = ["--custom-option"]
+            self.enable_performance_logging = True
+            self.logger_name = "test_logger"
+
+    mock_config = MockConfig()
+
+    # Test the from_obj method
+    with patch.object(UndetectedChromeDriver, '__init__', return_value=None) as mock_init:
+        UndetectedChromeDriver.from_obj(mock_config)
+
+        # Verify __init__ was called with the correct arguments
+        mock_init.assert_called_once_with(
+            user_agent=mock_config.user_agent,
+            chrome_driver_options=mock_config.chrome_driver_options,
+            enable_performance_logging=mock_config.enable_performance_logging,
+            logger_name=mock_config.logger_name
+        )
