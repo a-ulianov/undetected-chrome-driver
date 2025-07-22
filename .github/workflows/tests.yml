@@ -36,6 +36,7 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
       with:
         args: >
+          -Dsonar.organization=a-ulianov
           -Dsonar.projectKey=a-ulianov_undetected-chrome-driver
           -Dsonar.sources=src/
           -Dsonar.python.coverage.reportPaths=coverage.xml
