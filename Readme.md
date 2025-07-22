@@ -1,8 +1,7 @@
 # Undetected Chrome WebDriver
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=a-ulianov_undetected-chrome-driver&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=a-ulianov_undetected-chrome-driver)
 [![Tests](https://github.com/a-ulianov/undetected-chrome-driver/actions/workflows/tests.yml/badge.svg)](https://github.com/a-ulianov/undetected-chrome-driver/actions/workflows/tests.yml)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/a-ulianov/undetected-chrome-driver/actions/workflows/tests.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=a-ulianov_undetected-chrome-driver&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=a-ulianov_undetected-chrome-driver)
 [![codecov](https://codecov.io/gh/a-ulianov/undetected-chrome-driver/branch/main/graph/badge.svg)](https://codecov.io/gh/a-ulianov/undetected-chrome-driver)
 [![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -146,6 +145,7 @@ your_project/
 │   ├── test_driver.py
 │   └── test_logger.py
 ├── pyproject.toml
+├── requirements.txt
 └── main.py
 ```
 
