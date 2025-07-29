@@ -201,14 +201,14 @@ class UndetectedChromeDriver:
         """
         return getattr(self.driver, name)
 
-    def __enter__(self) -> uc.Chrome:
+    def __enter__(self) -> 'UndetectedChromeDriver':
         """
         Enter context manager, returning the driver instance.
 
         Returns:
             Selenium Chrome driver instance
         """
-        return self.driver
+        return self
 
     def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
         """Exit context manager, ensuring driver cleanup."""

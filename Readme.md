@@ -1,5 +1,6 @@
 # Undetected Chrome WebDriver
 
+
 [![Tests](https://github.com/a-ulianov/undetected-chrome-driver/actions/workflows/tests.yml/badge.svg)](https://github.com/a-ulianov/undetected-chrome-driver/actions/workflows/tests.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=a-ulianov_undetected-chrome-driver&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=a-ulianov_undetected-chrome-driver)
 [![codecov](https://codecov.io/gh/a-ulianov/undetected-chrome-driver/branch/main/graph/badge.svg)](https://codecov.io/gh/a-ulianov/undetected-chrome-driver)
