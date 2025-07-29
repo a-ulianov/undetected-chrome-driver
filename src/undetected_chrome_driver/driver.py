@@ -206,7 +206,7 @@ class UndetectedChromeDriver:
         Enter context manager, returning the driver instance.
 
         Returns:
-            Selenium Chrome driver instance
+            UndetectedChromeDriver instance
         """
         return self
 
